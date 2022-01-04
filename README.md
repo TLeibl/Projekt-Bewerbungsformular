@@ -10,4 +10,5 @@ Unterstützte Seiten:
 - YouTube
 
 Der Code kann in Web Assembly (WASM) compiled werden. 
-Programmiersprache: Python
+Programmiersprache Backend: Python
+
