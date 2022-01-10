@@ -12,3 +12,6 @@ Unterstützte Seiten:
 Der Code kann in Web Assembly (WASM) compiled werden. 
 Programmiersprache Backend: Python
 
+Teammitglieder:
+Marc Nauendorf, Tabea Leibl, David flaig
+
