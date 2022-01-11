@@ -1,26 +1,14 @@
-import pafy
+from pytube import YouTube
 
-#opening the text file which contains all the links
-file = open('list.txt', 'r')
+# Url des Videos
+url = 'https://www.youtube.com/watch?v=YDDz1Er2IXA&list=RDMMYDDz1Er2IXA&start_radio=1'
+my_video = YouTube(url)
 
-#loop through each link in the file
-for line in file:
+# Gibt den Videotitel in der Konsole Wieder
+print(my_video.title)
 
-    #assign link to "url" variable
-    url = line
+# Wählt die höchste mögliche Auflösung des Videos zum download
+my_video = my_video.streams.get_highest_resolution()
 
-    try:
-        #passing link to pafy
-        video = pafy.new(url)
-
-        #extracting the best available audio
-        bestaudio = video.getbestaudio()
-        print(video.title)
-
-        #donwnloading the extracted audio
-        bestaudio.download()
-    # move to next link if the video is removed in the youtube platform
-    except:
-        pass
-#close the text file
-file.close()
+# Downloaded das Video
+my_video.download()

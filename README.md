@@ -9,7 +9,7 @@ War der Download erfolgreich oder kann die Datei nicht heruntergeladen werden, s
 Unterstützte Seiten:
 - YouTube
 
-Der Code kann in Web Assembly (WASM) compiled werden. 
+Der Code kann durch die Verwendung von pyodide in Web Assembly (WASM) compiled werden. 
 Programmiersprache Backend: Python
 
 Teammitglieder:
