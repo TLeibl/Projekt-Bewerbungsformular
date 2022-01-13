@@ -1,4 +1,4 @@
-# Aufgabe: AudioDownloader
+# Aufgabe: Audio Downloader
 
 Funktionsweise:
 Der Nutzer soll ausgewählte Audiodateien downloaden können.
