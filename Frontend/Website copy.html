@@ -4,18 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="Design.css">
     <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js">
       languagePluginLoader
       .then(() => console.log(pyodide.runPython('import sys; sys.version')));
     </script>
-    <title>YouTube Downloader</title>
+    <title>Audio Downloader</title>
 </head>
 <body>
-    <input type="text" id="uri" placeholder="Youtube URL" value="'test'">
-    <button onclick="evaluatePython()">Download</button>
+  <h1>
+    <strong>
+      <img src="https://cdn3.iconfinder.com/data/icons/music-audio-video-cute-vol-2/52/download__music__audio__media__video__album__player-512.png" alt="" width="112" height="112" />
+      <span id="header">Audio Downloader</span>
+    </strong>
+  </h1>
+  <br/>
+  <p>
+    <input type="text" id="uri" placeholder="Youtube URL" value="'URL'" style="height: 20px; width: 200px">
+    <button id="downloadbutton" onclick="evaluatePython()">Download</button>
+  </p>
     <br/>
-    <br/>
-    <div>Output:</div>
+    <div id="outputHeader">Output:</div>
     <textarea id="output" style="width: 100%;" rows="6" disabled></textarea>  
 
     
