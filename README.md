@@ -14,4 +14,3 @@ Programmiersprache Backend: Python
 
 Teammitglieder:
 Marc Nauendorf, Tabea Leibl, David flaig
-

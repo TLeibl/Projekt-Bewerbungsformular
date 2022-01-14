@@ -1,7 +1,7 @@
 from pytube import YouTube
 
 # Url des Videos
-url = 'https://www.youtube.com/watch?v=YDDz1Er2IXA&list=RDMMYDDz1Er2IXA&start_radio=1'
+url = 'https://www.youtube.com/watch?v=tOixFKz-E0o'
 my_video = YouTube(url)
 
 # Gibt den Videotitel in der Konsole Wieder
