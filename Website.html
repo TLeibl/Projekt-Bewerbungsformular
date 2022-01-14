@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="Design.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js">
+      languagePluginLoader
+      .then(() => console.log(pyodide.runPython('import sys; sys.version')));
+    </script>
+    <title>Audio Downloader</title>
+</head>
+<body>
+  <h1>
+    <strong>
+      <img src="https://cdn3.iconfinder.com/data/icons/music-audio-video-cute-vol-2/52/download__music__audio__media__video__album__player-512.png" alt="" width="112" height="112" />
+      <span id="header">Audio Downloader</span>
+    </strong>
+  </h1>
+  <br/>
+  <p>
+    <input type="text" id="uri" placeholder="Youtube URL" style="height: 20px; width: 200px">
+    <button id="downloadbutton" onclick="evaluatePython()">Download</button>
+  </p>
+    <br/>
+    <div id="outputHeader">Output:</div>
+    <textarea id="output" style="width: 100%;" rows="6" disabled></textarea>  
+
+    
+    <script type="text/javascript">
+        const output = document.getElementById("output");
+        const link = document.getElementById("uri");
+       
+
+       
+      function addToOutput(s) {
+        // Wert in, welcher eingegeben wird, wird in der Python Consolenansicht wiedergegeben  
+        output.value += ">>>" + link.value + "\n" + s + "\n";
+      }
+
+      output.value = "Initializing...\n";
+
+      // init Pyodide
+      async function main(){
+        let pyodide = await loadPyodide({
+          indexURL : "https://cdn.jsdelivr.net/pyodide/v0.19.0/full/"
+        });
+
+        output.value += "Ready!\n";
+
+        return pyodide;
+      }
+      let pyodideReadyPromise = main();
+
+
+      async function evaluatePython() {
+        let pyodide = await pyodideReadyPromise;
+
+        text="'from pytube import YouTube <br>" & 
+            "def downloadVideo(url):<br>" &
+            "# Url des Videos<br>" &
+            "url = 'https://www.youtube.com/watch?v=YDDz1Er2IXA&list=RDMMYDDz1Er2IXA&start_radio=1'<br>" &
+            "my_video = YouTube(url)<br>" &
+            "# Gibt den Videotitel in der Konsole wieder<br>" &
+            "print('Downloading ' & my_video.title & ''... ')<br>" &
+            "# Wählt die höchste mögliche Auflösung des Videos zum Download<br>" &
+            "my_video = my_video.streams.get_highest_resolution()<br>" &
+            "# Downloaded das Video<br>" &
+            "# my_video.filter(progressive = True, file_extension='mp4')<br>" &
+            "my_video.download()<br>" &
+            "downloadVideo(url)'";
+
+        try {
+          let output = pyodide.runPython(text);
+          addToOutput(output);
+        } catch (err) {
+          addToOutput(err);
+        }
+      }
+
+    </script> 
+</body>
+</html>

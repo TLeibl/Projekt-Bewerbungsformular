@@ -9,8 +9,18 @@ War der Download erfolgreich oder kann die Datei nicht heruntergeladen werden, s
 Unterstützte Seiten:
 - YouTube
 
-Der Code kann durch die Verwendung von pyodide in Web Assembly (WASM) compiled werden. 
+Unterstützte Browser:
+- Google Chrome ab Version 71.0
+- Firefox ab Version 70.0
+
+Der Code kann durch die Verwendung von Pyodide in Web Assembly (WASM) compiled werden. 
+! Pytube, welches zum Download von YouTube-Videos verwendet wird, muss manuell installiert werden via
+Konsolenbefehl: pip install pytube
+Danach muss die Umgebung eventuell neu gestartet werden, damit der Import erfolgreich ist.
 Programmiersprache Backend: Python
+                   Frontend: HTML, CSS
+
 
 Teammitglieder:
-Marc Nauendorf, Tabea Leibl, David flaig
+Marc Nauendorf [], Tabea Leibl [204105], David Flaig [198687]
+

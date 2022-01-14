@@ -1,0 +1,17 @@
+# Aufgabe: Audio Downloader
+
+Funktionsweise:
+Der Nutzer soll ausgewählte Audiodateien downloaden können.
+Hierzu copy-pasted er einen Link zur ausgewählten Audiodatei in ein Feld auf der Website und 
+betätigt einen Download-Button. Anschließend kann er auswählen, wo die Datei gespeichert werden soll.
+War der Download erfolgreich oder kann die Datei nicht heruntergeladen werden, so soll eine entsprechende
+Benachrichtigung erscheinen.
+
+Der Download von folgenden Seiten soll unterstützt werden:
+- YouTube
+
+
+Der Backend-Code soll in Python geschrieben werden und durch einen Compiler nach Wahl in Web Assembly (WASM)
+compiled werden.
+Eine README soll die Verwendung und hierfür nötige Schritte wie z.B. das Installieren von Plugins o.Ä.
+beschreiben.
