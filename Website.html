@@ -20,7 +20,7 @@
   </h1>
   <br/>
   <p>
-    <input type="text" id="uri" placeholder="Youtube URL" value="'URL'" style="height: 20px; width: 200px">
+    <input type="text" id="uri" placeholder="Youtube URL" style="height: 20px; width: 200px">
     <button id="downloadbutton" onclick="evaluatePython()">Download</button>
   </p>
     <br/>
@@ -40,47 +40,45 @@
       }
 
       output.value = "Initializing...\n";
+
       // init Pyodide
       async function main(){
         let pyodide = await loadPyodide({
           indexURL : "https://cdn.jsdelivr.net/pyodide/v0.19.0/full/"
         });
-        pyodide.runPythonAsync(`
-        from pytube import YouTube
-
-        # Url des Videos
-        url = 'https://www.youtube.com/watch?v=YDDz1Er2IXA&list=RDMMYDDz1Er2IXA&start_radio=1'
-        my_video = YouTube(url)
-
-        # Gibt den Videotitel in der Konsole wieder
-        print(my_video.title)
-
-        # Wählt die höchste mögliche Auflösung des Videos zum Download
-        my_video = my_video.streams.get_highest_resolution()
-
-        # Downloaded das Video
-        my_video.download()
-        `)
-        .then(output => console.log(output));
 
         output.value += "Ready!\n";
+
         return pyodide;
       }
       let pyodideReadyPromise = main();
 
+
       async function evaluatePython() {
         let pyodide = await pyodideReadyPromise;
+
+        text="'from pytube import YouTube <br>" & 
+            "def downloadVideo(url):<br>" &
+            "# Url des Videos<br>" &
+            "url = 'https://www.youtube.com/watch?v=YDDz1Er2IXA&list=RDMMYDDz1Er2IXA&start_radio=1'<br>" &
+            "my_video = YouTube(url)<br>" &
+            "# Gibt den Videotitel in der Konsole wieder<br>" &
+            "print('Downloading ' & my_video.title & ''... ')<br>" &
+            "# Wählt die höchste mögliche Auflösung des Videos zum Download<br>" &
+            "my_video = my_video.streams.get_highest_resolution()<br>" &
+            "# Downloaded das Video<br>" &
+            "# my_video.filter(progressive = True, file_extension='mp4')<br>" &
+            "my_video.download()<br>" &
+            "downloadVideo(url)'";
+
         try {
-          let output = pyodide.runPython("'"+link.value+"'");
+          let output = pyodide.runPython(text);
           addToOutput(output);
         } catch (err) {
           addToOutput(err);
         }
       }
-    </script>
 
-
-    
-    
+    </script> 
 </body>
 </html>
