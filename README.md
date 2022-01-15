@@ -4,7 +4,7 @@ Teammitglieder:
 Marc Nauendorf [], Tabea Leibl [204105], David Flaig [198687]
 
 Funktionsweise:
-Der Nutzer kann ein Bewerbungsformular ausfüllen und durch Klick auf den Absenden-Button werden die eingegebenen Daten (Name, Alter, etc.) in einer JSON-Datei abgespeichert. Zusätzlich können im Formular Dokumente ausgewählt werden, welche dann ebenfalls gespeichert werden.
+Der Nutzer kann ein Bewerbungsformular ausfüllen und durch Klick auf den Abschicken-Button werden die eingegebenen Daten (Name, Alter, etc.) in einer JSON-Datei abgespeichert. Zusätzlich können im Formular Dokumente ausgewählt werden, welche dann ebenfalls gespeichert werden.
 War der Upload erfolgreich oder ging etwas schief, so erscheint eine entsprechende Benachrichtigung.
 
 Unterstützte Browser:

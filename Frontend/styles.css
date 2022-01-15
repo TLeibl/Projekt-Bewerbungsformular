@@ -6,25 +6,21 @@ h1{
     text-align: left;
 }
 
-#header{
-    color: #0e9ae5;
+header{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 30px;
     vertical-align: center;
 }
 
-#uri{
-    text-align: left;
+label{
+    font-weight: bold;
+    font-size: 20px;
 }
 
-#downloadbutton{
+
+button{
     height: 25px;
     width: 100px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
-}
-
-#outputHeader{
-    font-weight: bold;
-    font-size: 20px;
 }

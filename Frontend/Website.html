@@ -6,16 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"></script>
-    <title>Application Form</title>
+    <title>Bewerbungsformular</title>
 </head>
 <body>
+  <div class="header">
+    <h1 id="header" class="form-header" data-component="header">Bewerbung</h1>
+    <div id="subHeader" class="form-subHeader">Bitte füllen Sie das untenstehende Formular aus, um sich für eine Stelle zu bewerben.</div>
+  </div>
+  <br/>
+  <br/>
 
-    <input type="text" id="vorname" placeholder="Vorname">
-    <input type="text" id="nachname" placeholder="Nachname">
-    <input type="text" id="str" placeholder="Straße / Hausnummer">
-    <input type="text" id="ort" placeholder="PLZ / Wohnort">
-    <input type="text" id="email" placeholder="E-Mail">
+  <!-- Eingabefelder -->
+  <label for="name">Vollständiger Name</label> <br>
+  <div class="vorname">
+    <input type="text" placeholder="Vorname" id="vornameInput" name="vorname" required="">
+    <input type="text" placeholder="Nachname" id="nachnameInput" name="nachname" required="">
+  </div>
+  <br/>
+  <div class="email">
+    <label for="email">E-Mail</label> <br>
+    <input type="email" placeholder="Geben sie eine gültige E-Mail-Adresse an" id="emailInput" name="email" required="">
+  </div>
+  <br/>
+  <label for="anschrift">Derzeitige Anschrift</label> <br>
+  <div class="straße">
+    <input type="text" placeholder="Straße, Hausnummer" id="straßeInput" name="straße" required="">
+  </div>
+  <div class="ort">
+    <input type="text" placeholder="PLZ, Wohnort" id="ortInput" name="ort" required="">
+  </div>
+  <br/>
+  <label for="telefon">Telefon</label> <br>
+  <div class="telefon">
+    <input type="text" placeholder="Vorwahl" id="vorwahlInput" name="vorwahl" required="">
+    <input type="text" placeholder="Nummer" id="nummerInput" name="nummer" required="">
+  </div>
+  <br/>
+  <label for="art">Bewerbung auf</label> <br>
+  <div class="art">
+     <!-- Auswahlfeld adden (Pos1, Pos2, Pos3) mit Auswahl als Placeholder -->
+     <!-- + unten in evaluatePython-Methode richtigen Feldnamen -->
+  </div>
+  <!-- Datei-Input-Feld -->
+  <br/>
+  <br/>
+  <div class="button">
     <button onclick="evaluatePython()">Abschicken</button>
+  </div>
 
     <br/>
     <br/>
@@ -61,11 +98,13 @@
           data ={
             "person": [
               {
-              "Vorname" : js.vorname.value,
-              "Nachname" : js.nachname.value,
-              "Strasse/Hausnummer" : js.str.value,
-              "PLZ/Wohnort" : js.ort.value,
-              "E-Mail" : js.email.value
+              "Vorname" : js.vornameInput.value,
+              "Nachname" : js.nachnameInput.value,
+              "E-Mail" : js.emailInput.value
+              "Strasse/Hausnummer" : js.straßeInput.value,
+              "PLZ/Wohnort" : js.ortInput.value,
+              "Telefon" : js.vorwahlInput.value & js.nummerInput.value
+              "Bewerbung auf" : js.artInput.value 
               }
             ]  
           }
