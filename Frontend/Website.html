@@ -33,7 +33,7 @@
         output.value += s + "\n";
       }
 
-      output.value = "Initializing...\n";
+      output.value = "Initializing Python...\n";
       // init Pyodide
       async function main(){
         let pyodide = await loadPyodide({
@@ -52,39 +52,35 @@
 
         try {
           // let output = pyodide.runPython(link.value);
-          let output = await pyodide.runPythonAsync(`
+          let output = pyodide.runPython(`
           import js
           import json
-
-          js.document.title = "Magerquark"
-          x = 2+2*2
-          y = js.vorname.value
-          print(y)
-
-          # Python program to write JSON
-          # to a file
-            
+ 
           # Data to be written
           data ={
+            "person": [
+              {
               "Vorname" : js.vorname.value,
               "Nachname" : js.nachname.value,
               "Strasse/Hausnummer" : js.str.value,
               "PLZ/Wohnort" : js.ort.value,
               "E-Mail" : js.email.value
+              }
+            ]  
           }
             
           # Serializing json 
-          json_object = json.dumps(data, indent = 4)
+          json_object = json.dumps(data, indent = 2)
             
-          # Writing to data.json
-          with open('/data.json', 'wt') as outfile:
+          # Writing to data.json -> open mode ('a' -> append new content to the end of the file, "r" & "rt" -> read, "w" & "wt" -> write)
+          with open('/data.txt', 'a') as outfile:
               outfile.write(json_object)
 
 
           print(data)
           `);
           addToOutput(output);
-          let x = pyodide.runPython("open('/data.json', 'rt').read()");
+          let x = pyodide.runPython("open('/data.txt', 'r').read()");
           addToOutput(x);
 
           
