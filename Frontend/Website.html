@@ -44,10 +44,16 @@
   <br/>
   <label for="art">Bewerbung auf</label> <br>
   <div class="art">
-     <!-- Auswahlfeld adden (Pos1, Pos2, Pos3) mit Auswahl als Placeholder -->
-     <!-- + unten in evaluatePython-Methode richtigen Feldnamen -->
+     <select name="artSelect" size="3">
+      <option>Position 1</option>
+      <option>Position 2</option>
+      <option>Position 3</option>
+    </select>
   </div>
-  <!-- Datei-Input-Feld -->
+  <br/>
+  <label for="datei">Bewerbungsschreiben:</label> <br>
+  <input name="datei[]" type="file" multiple> 
+  <br/>
   <br/>
   <br/>
   <div class="button">
