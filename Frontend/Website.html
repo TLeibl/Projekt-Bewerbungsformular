@@ -12,7 +12,7 @@
     <input type="text" id="vorname" placeholder="Vorname">
     <input type="text" id="nachname" placeholder="Nachname">
     <input type="text" id="str" placeholder="Straße / Hausnummer">
-    <input type="text" id="ort" placeholder="Wohnort">
+    <input type="text" id="ort" placeholder="PLZ / Wohnort">
     <input type="text" id="email" placeholder="E-Mail">
     <button onclick="evaluatePython()">Abschicken</button>
 
@@ -30,7 +30,7 @@
       
       function addToOutput(s) {
         // Wert in, welcher eingegeben wird, wird in der Python Consolenansicht wiedergegeben  
-        output.value += ">>>" + link.value + "\n" + s + "\n";
+        output.value += s + "\n";
       }
 
       output.value = "Initializing...\n";
@@ -66,10 +66,11 @@
             
           # Data to be written
           data ={
-              "name" : "Marc",
-              "Hobbys" : "Weed Smoken",
-              "Besonderheiten" : "Reitet gerne auf Einhoernern",
-              "phonenumber" : "9976770500"
+              "Vorname" : js.vorname.value,
+              "Nachname" : js.nachname.value,
+              "Strasse/Hausnummer" : js.str.value,
+              "PLZ/Wohnort" : js.ort.value,
+              "E-Mail" : js.email.value
           }
             
           # Serializing json 
@@ -80,7 +81,7 @@
               outfile.write(json_object)
 
 
-
+          print(data)
           `);
           addToOutput(output);
           let x = pyodide.runPython("open('/data.json', 'rt').read()");
