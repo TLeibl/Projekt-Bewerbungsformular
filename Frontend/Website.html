@@ -8,14 +8,14 @@
     <title>Application Form</title>
 </head>
 <body>
-  <form>
+
     <input type="text" id="vorname" placeholder="Vorname">
     <input type="text" id="nachname" placeholder="Nachname">
     <input type="text" id="str" placeholder="Straße / Hausnummer">
     <input type="text" id="ort" placeholder="Wohnort">
     <input type="text" id="email" placeholder="E-Mail">
-    <button onclick="evaluatePython()">Download</button>
-  </form>
+    <button onclick="evaluatePython()">Abschicken</button>
+
     <br/>
     <br/>
     <div>Output:</div>
@@ -25,7 +25,7 @@
     
     <script type="text/javascript">
       const output = document.getElementById("output");
-      const link = document.getElementById("uri");
+      const link = document.getElementById("vorname");
         
       
       function addToOutput(s) {
@@ -58,17 +58,14 @@
 
           js.document.title = "Magerquark"
           x = 2+2*2
-          y = js.uri.value
+          y = js.vorname.value
           print(y)
 
           # Python program to write JSON
           # to a file
             
-            
-          import json
-            
           # Data to be written
-          dictionary ={
+          data ={
               "name" : "Marc",
               "Hobbys" : "Weed Smoken",
               "Besonderheiten" : "Reitet gerne auf Einhoernern",
@@ -76,12 +73,13 @@
           }
             
           # Serializing json 
-          json_object = json.dumps(dictionary, indent = 4)
+          json_object = json.dumps(data, indent = 4)
             
           # Writing to data.json
-
           with open('/data.json', 'wt') as outfile:
               outfile.write(json_object)
+
+
 
           `);
           addToOutput(output);
@@ -95,9 +93,5 @@
         }
       }
     </script>
-
-
-    
-    
 </body>
 </html>
