@@ -74,10 +74,12 @@ async function evaluatePython() {
         //let y = pyodide.runPython("open('js.datei', 'r').read()");
         addToOutput(x);
         //addToOutput(y);
+        alert("Übermittlung der Daten erfolgreich!");
 
 
 
     } catch (err) {
         addToOutput(err);
+        alert("Etwas lief schief! Bitte überprüfen Sie Ihre Eingaben und versuchen es gegebenenfalls zu einem späteren Zeitpunkt erneut!");
     }
 }
