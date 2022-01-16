@@ -81,6 +81,11 @@ select option {
 input[type="file"] {
     display: none;
 }
+
+#link {
+  display: none;
+}
+
 .custom-file-upload {
     border: 1px solid rgb(151, 151, 151);
     border-radius: 5px;

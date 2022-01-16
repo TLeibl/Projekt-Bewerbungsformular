@@ -1,5 +1,7 @@
 const output = document.getElementById("output");
-const link = document.getElementById("vorname");
+const input = document.getElementById('fileUpload');
+const downloadLink = document.getElementById('link');
+let objectURL;
 
 
 function addToOutput(s) {
@@ -61,7 +63,7 @@ async function evaluatePython() {
           json_object = json.dumps(data, indent = 2)
             
           # Writing to data.json; open mode ('a' -> append new content to the end of the file, "r" & "rt" -> read, "w" & "wt" -> write)
-          with open('/data.json', 'a') as outfile:
+          with open('/data.json', 'w') as outfile:
               outfile.write(json_object)
 
           
@@ -75,6 +77,7 @@ async function evaluatePython() {
     //addToOutput(y);
     //Popup Message Success
     alert("Übermittlung der Daten erfolgreich!");
+    downloadLink.style.display = "block";
 
 
 
@@ -85,15 +88,10 @@ async function evaluatePython() {
   }
 }
 
-
-const input = document.getElementById('fileUpload');
-const downloadLink = document.getElementById('link');
-let objectURL;
-
 input.addEventListener('change', function () {
   if (objectURL) {
     // revoke the old object url to avoid using more memory than needed
-    URL.revokeObjectURL(objectURL);
+    URL.revokeObjectURL(objectURL);  
   }
 
   const file = this.files[0];
@@ -108,8 +106,9 @@ async function updateList(){
     var input = document.getElementById('fileUpload');
     var output = document.getElementById('fileList');
     var children = "";
+
     for (var i = 0; i < input.files.length; ++i) {
-        children += '<li>' + input.files.item(i).name + '</li>';
+      children += '<li>' + input.files.item(i).name + '</li>';
     }
     output.innerHTML = '<ul>'+children+'</ul>';
 }
