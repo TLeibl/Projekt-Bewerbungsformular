@@ -80,6 +80,6 @@ async function evaluatePython() {
 
     } catch (err) {
         addToOutput(err);
-        alert("Etwas lief schief! Bitte überprüfen Sie Ihre Eingaben und versuchen es gegebenenfalls zu einem späteren Zeitpunkt erneut!");
+        alert("Etwas lief schief! Bitte überprüfen Sie Ihre Eingaben, die Vollständigkit dieser und versuchen es, gegebenenfalls zu einem späteren Zeitpunkt, erneut!");
     }
 }
