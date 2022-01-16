@@ -104,3 +104,16 @@ input.addEventListener('change', function () {
   downloadLink.download = file.name; // this name is used when the user downloads the file
   downloadLink.href = objectURL;
 });
+
+
+async function updateList(){
+    var input = document.getElementById('file-upload');
+    var output = document.getElementById('fileList');
+    var children = "";
+    for (var i = 0; i < input.files.length; ++i) {
+        children += '<li>' + input.files.item(i).name + '</li>';
+    }
+    output.innerHTML = '<ul>'+children+'</ul>';
+}
+
+
