@@ -71,7 +71,7 @@ async function evaluatePython() {
           `);
         addToOutput(output);
         let x = pyodide.runPython("open('/data.json', 'r').read()");
-        //let y = pyodide.runPython("open('js.datei', 'r').read()");
+        var selectedFile = document.getElementById('datei').files[0].addEventListener('change', this, false);
         addToOutput(x);
         //addToOutput(y);
         //Popup Message Success
@@ -85,3 +85,4 @@ async function evaluatePython() {
         alert("Etwas lief schief! Bitte überprüfen Sie Ihre Eingaben, die Vollständigkit dieser und versuchen es, gegebenenfalls zu einem späteren Zeitpunkt, erneut!");
     }
 }
+

@@ -22,7 +22,8 @@ label{
 /* input fields */
 input{
     font-size: 1em; 
-    width: 15%; min-width: 15%; 
+    width: fit-content; 
+    min-width: 15%; 
     box-sizing: border-box;
     padding: 4px;
     outline: none;
