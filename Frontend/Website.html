@@ -29,8 +29,8 @@
   </div>
   <br/>
   <label for="anschrift">Derzeitige Anschrift</label> <br>
-  <div class="straße">
-    <input type="text" placeholder="Straße, Hausnummer" id="straßeInput" name="straße" required="">
+  <div class="strasse">
+    <input type="text" placeholder="Straße, Hausnummer" id="strasseInput" name="strasse" required="">
   </div>
   <div class="ort">
     <input type="text" placeholder="PLZ, Wohnort" id="ortInput" name="ort" required="">
@@ -44,7 +44,7 @@
   <br/>
   <label for="art">Bewerbung auf</label> <br>
   <div class="art">
-     <select name="artSelect" size="3">
+     <select id="artSelect" size="3">
       <option>Position 1</option>
       <option>Position 2</option>
       <option>Position 3</option>
@@ -66,75 +66,7 @@
     <textarea id="output" style="width: 100%;" rows="30" disabled></textarea>  
 
 
-    
-    <script type="text/javascript">
-      const output = document.getElementById("output");
-      const link = document.getElementById("vorname");
-        
-      
-      function addToOutput(s) {
-        // Wert in, welcher eingegeben wird, wird in der Python Consolenansicht wiedergegeben  
-        output.value += s + "\n";
-      }
-
-      output.value = "Initializing Python...\n";
-      // init Pyodide
-      async function main(){
-        let pyodide = await loadPyodide({
-          indexURL : "https://cdn.jsdelivr.net/pyodide/v0.19.0/full/"
-        });
-
-        output.value += "Ready!\n";
-        return pyodide;
-      }
-      let pyodideReadyPromise = main();
-
-      // execute with onClick
-      async function evaluatePython() {
-
-        let pyodide = await pyodideReadyPromise;
-
-        try {
-          // let output = pyodide.runPython(link.value);
-          let output = pyodide.runPython(`
-          import js
-          import json
- 
-          # Data to be written
-          data ={
-            "person": [
-              {
-              "Vorname" : js.vornameInput.value,
-              "Nachname" : js.nachnameInput.value,
-              "E-Mail" : js.emailInput.value
-              "Strasse/Hausnummer" : js.straßeInput.value,
-              "PLZ/Wohnort" : js.ortInput.value,
-              "Telefon" : js.vorwahlInput.value & js.nummerInput.value
-              "Bewerbung auf" : js.artSelect.value 
-              }
-            ]  
-          }
-            
-          # Serializing json; indent -> spaces for the json formatting
-          json_object = json.dumps(data, indent = 2)
-            
-          # Writing to data.json; open mode ('a' -> append new content to the end of the file, "r" & "rt" -> read, "w" & "wt" -> write)
-          with open('/data.txt', 'a') as outfile:
-              outfile.write(json_object)
-
-
-          print(data)
-          `);
-          addToOutput(output);
-          let x = pyodide.runPython("open('/data.txt', 'r').read()");
-          addToOutput(x);
-
-          
-
-        } catch (err) {
-          addToOutput(err);
-        }
-      }
-    </script>
+  
 </body>
+<script src="script.js"></script>
 </html>
