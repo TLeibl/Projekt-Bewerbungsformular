@@ -51,7 +51,7 @@ async function evaluatePython() {
               "strasse" : js.strasseInput.value,
               "Wohnort" : js.ortInput.value,
               "telefon" : js.nummerInput.value,
-              "bewerbung auf" : js.artSelect.value,
+              "bewerbung auf" : js.artSelect.options.selected.value,
               "dateien" : js.datei.value
               }
             ]  
@@ -73,14 +73,16 @@ async function evaluatePython() {
         let x = pyodide.runPython("open('/data.json', 'r').read()");
         var selectedFile = document.getElementById('datei').files[0].addEventListener('change', this, false);
         addToOutput(x);
-        selectedFile;
-        addToOutput(selectedFile);
-
+        //addToOutput(y);
+        //Popup Message Success
+        alert("Übermittlung der Daten erfolgreich!");
 
 
 
     } catch (err) {
         addToOutput(err);
+        //Popup Message Failure
+        alert("Etwas lief schief! Bitte überprüfen Sie Ihre Eingaben, die Vollständigkit dieser und versuchen es, gegebenenfalls zu einem späteren Zeitpunkt, erneut!");
     }
 }
 
