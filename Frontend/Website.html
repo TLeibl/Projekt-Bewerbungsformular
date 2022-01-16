@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css style file -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Pyodide -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"></script>
+    <!-- upload symbol source -->
     <script src="https://kit.fontawesome.com/1558094f9b.js" crossorigin="anonymous"></script>
     <title>Bewerbungsformular</title>
 </head>
 <body>
+  <!-- headline -->
   <div class="header">
     <h1 id="header" class="form-header" data-component="header">Bewerbung</h1>
     <div id="subHeader" class="form-subHeader">Bitte füllen Sie das untenstehende Formular aus, um sich für eine Stelle zu bewerben.</div>
@@ -17,7 +21,7 @@
   <br/>
   <br/>
 
-  <!-- Eingabefelder -->
+  <!-- input fields -->
   <label for="name">Vollständiger Name</label> <br>
   <div class="vorname">
     <input type="text" placeholder="Vorname" id="vornameInput" name="vorname" required="">
@@ -42,6 +46,7 @@
     <input type="text" placeholder="Nummer mit Vorwahl" id="nummerInput" name="nummer" required="">
   </div>
   <br/>
+  <!-- option input field -->
   <label for="art">Bewerbung auf</label> <br>
   <div class="art">
      <select id="artSelect" size="1">
@@ -51,6 +56,7 @@
     </select>
   </div>
   <br/>
+  <!-- file upload field -->
   <label for="datei">Bewerbungsunterlagen</label> <br> 
   <label for="file-upload" id="upload" class="custom-file-upload">
     <i class="fas fa-file-upload"></i> Dateien auswählen
@@ -59,15 +65,18 @@
   <br/>
   <br/>
   <br/>
+  <!-- Abschicken-button -->
   <div class="button">
     <button onclick="evaluatePython()">Abschicken</button>
   </div>
 
     <br/>
     <br/>
+    <!-- debug output -->
     <div>Output:</div>
     <textarea id="output" style="width: 100%;" rows="30" disabled></textarea>  
 
 </body>
+<!-- script to call Python code -->
 <script src="script.js"></script>
 </html>
