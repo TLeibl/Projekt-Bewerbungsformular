@@ -105,7 +105,7 @@ input.addEventListener('change', function () {
 
 
 async function updateList(){
-    var input = document.getElementById('file-upload');
+    var input = document.getElementById('fileUpload');
     var output = document.getElementById('fileList');
     var children = "";
     for (var i = 0; i < input.files.length; ++i) {
