@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"></script>
     <!-- upload symbol source -->
     <script src="https://kit.fontawesome.com/1558094f9b.js" crossorigin="anonymous"></script>
+    <!-- script to call Python code -->
+    <script src="script.js"></script>
     <title>Bewerbungsformular</title>
 </head>
 <body>
@@ -60,8 +62,12 @@
   <label for="datei">Bewerbungsunterlagen</label> <br> 
   <label for="file-upload" id="upload" class="custom-file-upload">
     <i class="fas fa-file-upload"></i> Dateien auswählen
-</label>
-  <input name="datei[]" id="file-upload" type="file" multiple> 
+  </label>
+  <div class="input">
+    <input name="datei[]" id="file-upload" type="file" multiple  onchange="updateList()"> 
+    <p>Ausgewählte Dateien:</p>
+    <div id="fileList"></div>
+  </div>
   <br/>
   <br/>
   <br/>
@@ -77,6 +83,4 @@
     <textarea id="output" style="width: 100%;" rows="30" disabled></textarea>  
 
 </body>
-<!-- script to call Python code -->
-<script src="script.js"></script>
 </html>
