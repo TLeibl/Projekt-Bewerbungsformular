@@ -1,13 +1,17 @@
-# AudioDownloader
+# Bewerbungsformular mit Datenspeicherung
 WebDev Endabgabe
+Teammitglieder:
+Marc Nauendorf [200882], Tabea Leibl [204105], David Flaig [198687]
 
 Funktionsweise:
-Der Nutzer kann ausgewählte Audiodateien downloaden.
-Hierzu copy-pasted er einen Link zur ausgewählten Audiodatei in das Feld auf der Website und betätigt den Download-Button. Anschließend kann er auswählen, wo die Datei gespeichert werden soll.
-War der Download erfolgreich oder kann die Datei nicht heruntergeladen werden, so erscheint eine Benachrichtigung. 
+Der Nutzer kann ein Bewerbungsformular ausfüllen und durch Klick auf den Abschicken-Button werden die eingegebenen Daten (Name, Alter, etc.) in einer JSON-Datei abgespeichert. Zusätzlich können im Formular Dokumente ausgewählt werden, welche dann ebenfalls gespeichert werden.
+War der Upload erfolgreich oder ging etwas schief, so erscheint eine entsprechende Benachrichtigung.
 
-Unterstützte Seiten:
-- YouTube
+Unterstützte Browser:
+- Google Chrome ab Version 71.0
+- Firefox ab Version 70.0
 
-Der Code kann in Web Assembly (WASM) compiled werden. 
-Programmiersprache: Python
+Der Code wird durch Verwendung von Pyodide in Web Assembly (WASM) compiled.
+Programmiersprache Backend: Python
+                   Frontend: HTML, CSS, JavaScript
+
