@@ -1,32 +1,32 @@
 const output = document.getElementById("output");
-      const link = document.getElementById("vorname");
-        
-      
-      function addToOutput(s) {
-        // Wert in, welcher eingegeben wird, wird in der Python Consolenansicht wiedergegeben  
-        output.value += s + "\n";
-      }
+const link = document.getElementById("vorname");
 
-      output.value = "Initializing Python...\n";
-      // init Pyodide
-      async function main(){
-        let pyodide = await loadPyodide({
-          indexURL : "https://cdn.jsdelivr.net/pyodide/v0.19.0/full/"
-        });
 
-        output.value += "Ready!\n";
-        return pyodide;
-      }
-      let pyodideReadyPromise = main();
+function addToOutput(s) {
+    // Wert in, welcher eingegeben wird, wird in der Python Consolenansicht wiedergegeben  
+    output.value += s + "\n";
+}
 
-      // execute with onClick
-      async function evaluatePython() {
+output.value = "Initializing Python...\n";
+// init Pyodide
+async function main() {
+    let pyodide = await loadPyodide({
+        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.19.0/full/"
+    });
 
-        let pyodide = await pyodideReadyPromise;
+    output.value += "Ready!\n";
+    return pyodide;
+}
+let pyodideReadyPromise = main();
 
-        try {
-          // let output = pyodide.runPython(link.value);
-          let output = pyodide.runPython(`
+// execute with onClick
+async function evaluatePython() {
+
+    let pyodide = await pyodideReadyPromise;
+
+    try {
+        // let output = pyodide.runPython(link.value);
+        let output = pyodide.runPython(`
           import js
           import json
  
@@ -55,14 +55,13 @@ const output = document.getElementById("output");
 
           print(data)
           `);
-          addToOutput(output);
-          let x = pyodide.runPython("open('/data.txt', 'r').read()");
-          addToOutput(x);
+        addToOutput(output);
+        let x = pyodide.runPython("open('/data.txt', 'r').read()");
+        addToOutput(x);
 
-          
 
-        } catch (err) {
-          addToOutput(err);
-        }
+
+    } catch (err) {
+        addToOutput(err);
     }
-    
+}
