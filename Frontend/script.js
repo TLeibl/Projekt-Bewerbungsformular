@@ -71,9 +71,7 @@ async function evaluatePython() {
           `);
     addToOutput(output);
     let x = pyodide.runPython("open('/data.json', 'r').read()");
-    var selectedFile = document.getElementById('fileUpload').files[0];
     addToOutput(x);
-    loadFileAsText();
     //addToOutput(y);
     //Popup Message Success
     alert("Übermittlung der Daten erfolgreich!");
