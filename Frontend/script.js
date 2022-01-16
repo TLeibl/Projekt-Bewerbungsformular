@@ -50,7 +50,7 @@ async function evaluatePython() {
               "email" : js.emailInput.value,
               "strasse" : js.strasseInput.value,
               "Wohnort" : js.ortInput.value,
-              "telefon" : js.vorwahlInput.value +"/"+ js.nummerInput.value,
+              "telefon" : js.nummerInput.value,
               "bewerbung auf" : js.artSelect.value,
               "dateien" : js.datei.value
               }

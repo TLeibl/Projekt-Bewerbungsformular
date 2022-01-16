@@ -2,8 +2,9 @@
 
 Funktionsweise:
 Der Nutzer soll ein Bewerbungsformular ausfüllen können und durch einen Buttonklick die eingegebenen Daten 
-(Name, Alter, etc.) in einer JSON-Datei abgespeichert werden. Eine Auswahl von Dokumenten soll ebenfalls
-möglich sein, welche dann ebenfalls gespeichert werden sollen.
+(Vorname, Nachname, Email, Straße, Wohnort mit PLZ, Telefonnummer sowie Bewerbungsstelle) in einer 
+JSON-Datei abgespeichert werden. 
+Eine Auswahl von Dokumenten soll ebenfalls möglich sein, welche dann ebenfalls gespeichert werden sollen.
 War der Upload erfolgreich oder ging etwas schief, so soll eine entsprechende Benachrichtigung erscheinen.
 
 
