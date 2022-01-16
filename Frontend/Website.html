@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"></script>
+    <script src="https://kit.fontawesome.com/1558094f9b.js" crossorigin="anonymous"></script>
     <title>Bewerbungsformular</title>
 </head>
 <body>
@@ -43,15 +44,18 @@
   <br/>
   <label for="art">Bewerbung auf</label> <br>
   <div class="art">
-     <select id="artSelect" size="3">
+     <select id="artSelect" size="1">
       <option>Position 1</option>
       <option>Position 2</option>
       <option>Position 3</option>
     </select>
   </div>
   <br/>
-  <label for="datei">Bewerbungsunterlagen:</label> <br>
-  <input name="datei[]" id="datei" type="file" multiple> 
+  <label for="datei">Bewerbungsunterlagen</label> <br> 
+  <label for="file-upload" id="upload" class="custom-file-upload">
+    <i class="fas fa-file-upload"></i> Dateien auswählen
+</label>
+  <input name="datei[]" id="file-upload" type="file" multiple> 
   <br/>
   <br/>
   <br/>

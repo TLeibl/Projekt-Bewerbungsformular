@@ -51,7 +51,7 @@ async function evaluatePython() {
               "strasse" : js.strasseInput.value,
               "Wohnort" : js.ortInput.value,
               "telefon" : js.nummerInput.value,
-              "bewerbung auf" : js.artSelect.value,
+              "bewerbung auf" : js.artSelect.options.selected.value,
               "dateien" : js.datei.value
               }
             ]  
