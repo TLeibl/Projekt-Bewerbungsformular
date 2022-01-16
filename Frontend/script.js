@@ -29,18 +29,30 @@ async function evaluatePython() {
         let output = pyodide.runPython(`
           import js
           import json
- 
+          import os
+
+          dir = js.vornameInput.value+js.nachnameInput.value
+          
+          if not os.path.exists(dir):
+            os.makedirs(dir)
+            print("Für die Ablage der Dateien wurde folgender Ordner erstellt :", dir)
+          else:
+            print("Für die Ablage der Dateien wurde der bereits existierende Ordner verwendet :", dir)
+
+            
+
           # Data to be written
           data ={
             "vorname" : js.vornameInput.value,
             "nachname" : js.nachnameInput.value,
             "daten" : [
               {
-              "E-Mail" : js.emailInput.value,
-              "StrasseHausnummer" : js.strasseInput.value,
-              "PLZWohnort" : js.ortInput.value,
-              "Telefon" : js.vorwahlInput.value +"/"+ js.nummerInput.value,
-              "Bewerbung auf" : js.artSelect.value 
+              "email" : js.emailInput.value,
+              "strasse" : js.strasseInput.value,
+              "Wohnort" : js.ortInput.value,
+              "telefon" : js.vorwahlInput.value +"/"+ js.nummerInput.value,
+              "bewerbung auf" : js.artSelect.value,
+              "dateien" : js.datei.value
               }
             ]  
           }
@@ -49,15 +61,19 @@ async function evaluatePython() {
           json_object = json.dumps(data, indent = 2)
             
           # Writing to data.json; open mode ('a' -> append new content to the end of the file, "r" & "rt" -> read, "w" & "wt" -> write)
-          with open('/data.txt', 'a') as outfile:
+          with open('/data.json', 'a') as outfile:
               outfile.write(json_object)
+
+          
 
 
           print(data)
           `);
         addToOutput(output);
-        let x = pyodide.runPython("open('/data.txt', 'r').read()");
+        let x = pyodide.runPython("open('/data.json', 'r').read()");
+        //let y = pyodide.runPython("open('js.datei', 'r').read()");
         addToOutput(x);
+        //addToOutput(y);
 
 
 
