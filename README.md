@@ -7,7 +7,8 @@ Funktionsweise:
 Der Nutzer kann ein Bewerbungsformular ausfüllen und durch Klick auf den Abschicken-Button werden die eingegebenen Daten (Vorname, Nachname, Email, Straße, Wohnort mit PLZ, Telefonnummer sowie Bewerbungsstelle) in einer JSON-Datei abgespeichert. Zusätzlich können im Formular Dokumente ausgewählt werden (Bewerbungsschreiben, Lebenslauf sowie Abschlusszeugnis), welche dann ebenfalls gespeichert werden. 
 Durch das Speichern der Daten sowie Dateien wird ein Server simuliert.
 War der Upload erfolgreich oder ging etwas schief, so erscheint eine entsprechende Benachrichtigung.
-Die gespeicherten Daten sowie Links zum erneuten Download der hochgeladenen Dateien werden nach vollständigem Abschicken der Daten angezeigt. 
+Fehlen Eingaben, so soll hierzu ebenfalls eine Benachrichtigung erscheinen.
+Die gespeicherten Daten sowie Links zum erneuten Download der hochgeladenen Dateien sind für den Nutzer durch Klick auf den Button "Bisher gespeicherte Daten ansehen" einsehbar. Nach Abschicken der Daten sind diese ebenfalls zusammengefasst für den Nutzer einsehbar.
 
 Das Outputfenster unten wurde erhalten, um die Kommunikation mit Python via Pyodide zu veranschaulichen.
 
