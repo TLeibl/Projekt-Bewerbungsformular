@@ -11,6 +11,10 @@
     <title>Gespeicherte Daten</title>
 </head>
 <body>
+    <script > 
+        setDataOutput();
+    </script>
+
   <!-- headline -->
   <div class="header">
     <h1 id="header" class="form-header" data-component="header">Gespeicherte Daten</h1>
@@ -22,7 +26,7 @@
   <!-- input fields -->
   <div class="name">
     <label for="name">Vollständiger Name:</label>
-    <span> </span>
+    <div id="name"></div>
   </div>
   <div class="email">
     <label for="email">E-Mail:</label> 
@@ -38,14 +42,14 @@
   <div class="art">
     <label for="art">Bewerbung auf:</label>
   </div>
-
   <br/>
-  <!-- file upload field -->
+  <!-- file upload link -->
   <div class="dateien">
     <label for="art">Hochgeladene Dateien:</label><br/>
     <a id="link">Downloadlink für die hochgeladenen Dateien (wenn etwas hochgeladen wurde).</a>
   </div>
 </body>
+
 <!-- script to call Python code -->
 <script src="script.js"></script>
 </html>

@@ -114,4 +114,21 @@ async function updateList(){
     output.innerHTML = '<ul>'+children+'</ul>';
 }
 
+// execute with onClick to set data in Output.html
+async function setDataOutput() {
+
+  let pyodide = await pyodideReadyPromise;
+
+  try {
+      pyodide.runPythonAsync(`my_string = "This is a python string." `);
+
+      document.getElementById("name").innerText = my_string;
+      //pyodide globals. ...
+  } catch (err) {
+    addToOutput(err);
+    //Popup Message Failure
+    alert("Etwas lief schief! Bitte versuchen Sie es erneut!");
+  }
+}
+
 
