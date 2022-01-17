@@ -32,7 +32,7 @@ function addToOutput(s) {
   output.value += s + "\n";
 }
 
-output.value = "Initializing Python...\n";
+//output.value = "Initializing Python...\n";
 // init Pyodide
 async function main() {
   pyodide = await loadPyodide({
@@ -89,8 +89,8 @@ async function evaluatePython() {
           # Writing to data.json; open mode ('a' -> append new content to the end of the file, "r" & "rt" -> read, "w" & "wt" -> write)
           with open('/data.json', 'w') as outfile:
               outfile.write(json_object)
-
           `);
+
     //Shows JSON Data in the output textfield
     let x = pyodide.runPython(`open('/data.json', 'r').read()`);
     addToOutput(x); 
