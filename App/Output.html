@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Pyodide -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"></script>
+
     <title>Gespeicherte Daten</title>
 </head>
 <body>
@@ -22,7 +23,7 @@
   <!-- input fields -->
   <div class="name">
     <label for="name">Vollständiger Name:</label>
-    <span> </span>
+    <span id=showName> </span>
   </div>
   <div class="email">
     <label for="email">E-Mail:</label> 
@@ -45,7 +46,10 @@
     <label for="art">Hochgeladene Dateien:</label><br/>
     <a id="link">Downloadlink für die hochgeladenen Dateien (wenn etwas hochgeladen wurde).</a>
   </div>
+  <div class="Button">
+  <button onclick="evaluatePython()">Abschicken</button>
+  </div>
+  <textarea id="output" disabled rows="20" style="width: 100%;"></textarea>
 </body>
-<!-- script to call Python code -->
-<script src="script.js"></script>
+
 </html>

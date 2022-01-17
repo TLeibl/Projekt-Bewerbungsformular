@@ -23,40 +23,36 @@ let pyodideReadyPromise = main();
 
 // execute with onClick
 async function evaluatePython() {
-
+ 
   let pyodide = await pyodideReadyPromise;
 
   try {
-    // let output = pyodide.runPython(link.value);
-    let output = pyodide.runPython(`
+    pyodide.runPython(`
           import js
           import json
           import os
-
-          #dir = js.vornameInput.value+js.nachnameInput.value
           
-          #if not os.path.exists(dir):
-          #  os.makedirs(dir)
-          #  print("Für die Ablage der Dateien wurde folgender Ordner erstellt :", dir)
-          #else:
-          #  print("Für die Ablage der Dateien wurde der bereits existierende Ordner verwendet :", dir)
+          #Get the values from the input fields
+          vorname = js.vornameInput.value
+          nachname = js.nachnameInput.value
+          email = js.emailInput.value
+          strasse = js.strasseInput.value
+          wohnort = js.ortInput.value
+          telefon = js.nummerInput.value
+          bewerbungAuf = js.artSelect.value
+          dateien = js.fileUpload.value
 
-            
 
-          # Data to be written
-          data ={
-            "vorname" : js.vornameInput.value,
-            "nachname" : js.nachnameInput.value,
-            "daten" : [
-              {
-              "email" : js.emailInput.value,
-              "strasse" : js.strasseInput.value,
-              "Wohnort" : js.ortInput.value,
-              "telefon" : js.nummerInput.value,
-              "bewerbung auf" : js.artSelect.value,
-              "dateien" : js.fileUpload.value
-              }
-            ]  
+          #saving the data into JSON format
+          data = {
+            "vorname" : vorname,
+            "nachname" : nachname,
+            "email" : email,
+            "strasse" : strasse,
+            "wohnort" : wohnort,
+            "telefon" : telefon,
+            "bewerbungAuf" : bewerbungAuf,
+            "dateien" : dateien
           }
             
           # Serializing json; indent -> spaces for the json formatting
@@ -67,18 +63,29 @@ async function evaluatePython() {
               outfile.write(json_object)
 
           
+          #print(data)
 
+          #load data from the JSON format
+          js.showName.innerText = data['vorname']+" "+data['nachname']
+          js.showEmail.innerText = data['email']
+          js.showAnschrift.innerText = data['strasse']+', '+data['wohnort']
+          js.showTelefon.innerText = data['telefon']
+          js.showArt.innerText = data['bewerbungAuf']
 
-          print(data)
           `);
-    addToOutput(output);
-    let x = pyodide.runPython("open('/data.json', 'r').read()");
-    addToOutput(x);
+    let x = pyodide.runPython(`open('/data.json', 'r').read()`);
+    //const data = pyodide.globals.get(['data']['vorname']);
+    
+    addToOutput(x); // wird in der console ausgegeben
+   
+    
+    //addToOutput(x);
     //addToOutput(y);
     //Popup Message Success
     alert("Übermittlung der Daten erfolgreich!");
-    location.href="Output.html";
+    //location.href="Output.html";
     downloadLink.style.display = "block";
+    
 
 
 
@@ -88,6 +95,10 @@ async function evaluatePython() {
     alert("Etwas lief schief! Bitte überprüfen Sie Ihre Eingaben, die Vollständigkit dieser und versuchen es, gegebenenfalls zu einem späteren Zeitpunkt, erneut!");
   }
 }
+
+
+  
+
 
 
 input.addEventListener('change', function () {
@@ -113,6 +124,33 @@ async function updateList(){
       children += '<li>' + input.files.item(i).name + '</li>';
     }
     output.innerHTML = '<ul>'+children+'</ul>';
+}
+
+
+// Get the modal
+var modal = document.getElementById("uebersichtsModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("uebersichtBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
 

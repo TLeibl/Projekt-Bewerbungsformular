@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- css style file -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- Pyodide -->
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"></script>
-    <!-- upload symbol source -->
-    <script src="https://kit.fontawesome.com/1558094f9b.js" crossorigin="anonymous"></script>
-    <title>Bewerbungsformular</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- css style file -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Pyodide -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"></script>
+  <!-- upload symbol source -->
+  <script src="https://kit.fontawesome.com/1558094f9b.js" crossorigin="anonymous"></script>
+  <title>Bewerbungsformular</title>
 </head>
+
 <body>
   <!-- headline -->
   <div class="header">
     <h1 id="header" class="form-header" data-component="header">Bewerbung</h1>
-    <div id="subHeader" class="form-subHeader">Bitte füllen Sie das untenstehende Formular aus, um sich für eine Stelle zu bewerben. Füllen Sie alle Felder korrekt aus.</div>
+    <div id="subHeader" class="form-subHeader">Bitte füllen Sie das untenstehende Formular aus, um sich für eine Stelle
+      zu bewerben. Füllen Sie alle Felder korrekt aus.</div>
   </div>
-  <br/>
-  <br/>
+  <br />
+  <br />
 
   <!-- input fields -->
   <label for="name">Vollständiger Name</label> <br>
@@ -27,12 +30,12 @@
     <input type="text" placeholder="Vorname" id="vornameInput" name="vorname" required="">
     <input type="text" placeholder="Nachname" id="nachnameInput" name="nachname" required="">
   </div>
-  <br/>
+  <br />
   <div class="email">
     <label for="email">E-Mail</label> <br>
     <input type="email" placeholder="z.B. max.mustermann@email.com" id="emailInput" name="email" required="">
   </div>
-  <br/>
+  <br />
   <label for="anschrift">Derzeitige Anschrift</label> <br>
   <div class="strasse">
     <input type="text" placeholder="Straße, Hausnummer" id="strasseInput" name="strasse" required="">
@@ -40,48 +43,102 @@
   <div class="ort">
     <input type="text" placeholder="PLZ, Wohnort" id="ortInput" name="ort" required="">
   </div>
-  <br/>
+  <br />
   <label for="telefon">Telefon</label> <br>
   <div class="telefon">
     <input type="text" placeholder="Nummer mit Vorwahl" id="nummerInput" name="nummer" required="">
   </div>
-  <br/>
+  <br />
   <!-- option input field -->
   <label for="art">Bewerbung auf</label> <br>
   <div class="art">
-     <select id="artSelect" size="1">
+    <select id="artSelect" size="1">
       <option>Position 1</option>
       <option>Position 2</option>
       <option>Position 3</option>
     </select>
   </div>
-  <br/>
+  <br />
   <!-- file upload field -->
-  <label for="datei">Bewerbungsunterlagen</label> <br> 
+  <label for="datei">Bewerbungsunterlagen</label> <br>
   <label for="fileUpload" id="upload" class="custom-file-upload">
     <i class="fas fa-file-upload"></i> Dateien auswählen
   </label>
   <div class="input">
-    <input name="datei[]" id="fileUpload" type="file" multiple  onchange="updateList()"> 
+    <input name="datei[]" id="fileUpload" type="file" multiple onchange="updateList()">
     <p>Ausgewählte Dateien:</p>
     <div id="fileList"></div>
     <a id="link">link to your file (upload a file first)</a>
   </div>
-  <br/>
-  <br/>
-  <br/>
+  <br />
+  <br />
+  <br />
+  <!-- Übersicht Modal -->
+  <div class="button">
+    <button id="uebersichtBtn">Zusammenfassung</button>
+  </div>
+  <br />
   <!-- Abschicken-button -->
   <div class="button">
     <button onclick="evaluatePython()">Abschicken</button>
   </div>
-  <br/>
-  <br/>
+  <br />
+  <br />
 
-    <!-- debug output -->
-    <div>Output:</div>
-    <textarea id="output" style="width: 100%;" rows="30" disabled></textarea>  
+  <!-- debug output -->
+  <div>Output:</div>
+  <textarea id="output" style="width: 100%;" rows="30" disabled></textarea>
+  <!-- Trigger/Open The Modal -->
+
+
+  <!-- The Modal -->
+  <div id="uebersichtsModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <!-- headline -->
+      <div class="header">
+        <h1 id="header" class="form-header" data-component="header">Gespeicherte Daten</h1>
+        <div id="subHeader" class="form-subHeader">Hier sind Ihre gespeicherten Daten nach dem Abschicken ersichtlich
+          sowie die hochgeladenen Dateien erneut downloadbar.</div>
+      </div>
+      <br />
+      <br />
+
+      <!-- input fields -->
+      <div class="name">
+        <label for="name">Vollständiger Name:</label>
+        <span id=showName> </span>
+      </div>
+      <div class="email">
+        <label for="email">E-Mail:</label>
+        <span id=showEmail> </span>
+      </div>
+      <div class="anschrift">
+        <label for="anschrift">Derzeitige Anschrift:</label>
+        <span id=showAnschrift> </span>
+      </div>
+      <div class="telefon">
+        <label for="telefon">Telefon:</label>
+        <span id=showTelefon> </span>
+      </div>
+      <div class="art">
+        <label for="art">Bewerbung auf:</label>
+        <span id=showArt> </span>
+      </div>
+      <br />
+      <!-- file upload field -->
+      <div class="dateien">
+        <label for="art">Hochgeladene Dateien:</label><br />
+        <a id="link">Downloadlink für die hochgeladenen Dateien (wenn etwas hochgeladen wurde).</a>
+      </div>
+    </div>
+
+  </div>
 
 </body>
-<!-- script to call Python code -->
 <script src="script.js"></script>
+
 </html>
