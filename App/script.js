@@ -32,7 +32,7 @@ function addToOutput(s) {
   output.value += s + "\n";
 }
 
-//output.value = "Initializing Python...\n";
+output.value = "Initializing Python...\n";
 // init Pyodide
 async function main() {
   pyodide = await loadPyodide({
