@@ -1,9 +1,6 @@
 // Get the modal
 var modal = document.getElementById("uebersichtsModal");
 
-// Get the button that opens the modal
-var modalBtn = document.getElementById("uebersichtBtn");
-
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
@@ -11,7 +8,9 @@ const output = document.getElementById("output");
 const input1 = document.getElementById('fileUpload1');
 const input2 = document.getElementById('fileUpload2');
 const input3 = document.getElementById('fileUpload3');
-const downloadLink = document.getElementById('link');
+const downloadLink1 = document.getElementById('link1');
+const downloadLink2 = document.getElementById('link2');
+const downloadLink3 = document.getElementById('link3');
 let objectURL;
 let pyodide;
 
@@ -78,11 +77,6 @@ async function evaluatePython() {
           with open('/data.json', 'w') as outfile:
               outfile.write(json_object)
 
-          
-          #print(data)
-
-          
-
           `);
     let x = pyodide.runPython(`open('/data.json', 'r').read()`);
     //const data = pyodide.globals.get(['data']['vorname']);
@@ -93,7 +87,9 @@ async function evaluatePython() {
     modalView();
     //Popup Message Success
     console.log("Übermittlung der Daten erfolgreich!, Success!");
-    downloadLink.style.display = "block";
+    downloadLink1.style.display = "block";
+    downloadLink2.style.display = "block";
+    downloadLink3.style.display = "block";
 
   } catch (err) {
     addToOutput(err);
@@ -131,47 +127,49 @@ async function showModalData(){
 }
 
 
-  
-
-
 
 input1.addEventListener('change', function () {
-  if (objectURL1) {
+  if (objectURL) {
     // revoke the old object url to avoid using more memory than needed
-    URL.revokeObjectURL(objectURL1);  
+    URL.revokeObjectURL(objectURL);  
   }
 
   const file = this.files[0];
-  objectURL1 = URL.createObjectURL(file);
+  objectURL = URL.createObjectURL(file);
 
-  downloadLink.download = file.name; // this name is used when the user downloads the file
-  downloadLink.href = objectURL1;
+  downloadLink1.download = file.name; // this name is used when the user downloads the file
+  downloadLink1.href = objectURL;
+  downloadLink1.innerText = "Download "+file.name;
 });
 
+
 input2.addEventListener('change', function () {
-  if (objectURL2) {
+  if (objectURL) {
     // revoke the old object url to avoid using more memory than needed
-    URL.revokeObjectURL(objectURL2);  
+    URL.revokeObjectURL(objectURL);  
   }
 
   const file = this.files[0];
-  objectURL2 = URL.createObjectURL(file);
+  objectURL = URL.createObjectURL(file);
 
-  downloadLink.download = file.name; // this name is used when the user downloads the file
-  downloadLink.href = objectURL2;
+  downloadLink2.download = file.name; // this name is used when the user downloads the file
+  downloadLink2.href = objectURL;
+  downloadLink2.innerText = "Download "+file.name;
+
 });
 
 input3.addEventListener('change', function () {
-  if (objectURL3) {
+  if (objectURL) {
     // revoke the old object url to avoid using more memory than needed
-    URL.revokeObjectURL(objectURL3);  
+    URL.revokeObjectURL(objectURL);  
   }
 
   const file = this.files[0];
-  objectURL3 = URL.createObjectURL(file);
+  objectURL = URL.createObjectURL(file);
 
-  downloadLink.download = file.name; // this name is used when the user downloads the file
-  downloadLink.href = objectURL3;
+  downloadLink3.download = file.name; // this name is used when the user downloads the file
+  downloadLink3.href = objectURL;
+  downloadLink3.innerText = "Download "+file.name;
 });
 
 
