@@ -9,6 +9,8 @@ Durch das Speichern der Daten sowie Dateien wird ein Server simuliert.
 War der Upload erfolgreich oder ging etwas schief, so erscheint eine entsprechende Benachrichtigung.
 Die gespeicherten Daten sowie Links zum erneuten Download der hochgeladenen Dateien werden nach Abschluss des Vorgangs angezeigt.
 
+Das Outputfenster wurde erhalten, um die Kommunikation mit Python via Pyodide zu veranschaulichen.
+
 Unterstützte Browser:
 - Google Chrome ab Version 71.0
 - Firefox ab Version 70.0
