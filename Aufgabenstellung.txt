@@ -13,6 +13,6 @@ angezeigt werden können.
 
 
 Das Backend bzw. die Verarbeitung der Daten soll ausschließlich in Python geschrieben werden und durch einen Compiler nach Wahl (z.B. Pyodide) in Web Assembly (WASM)
-compiled werden. Funktionen sollen in einer separaten JavaScript-Datei, Style in einer CSS-Datei umgesetztt werden.
+compiled werden. Funktionen sollen in einer separaten JavaScript-Datei, Style in einer CSS-Datei umgesetzt werden.
 Eine README soll die Verwendung und hierfür nötige Schritte wie z.B. das Installieren von Plugins o.Ä.
 beschreiben.
