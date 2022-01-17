@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css style file -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Pyodide -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"></script>
+    <title>Outputfenster</title>
+</head>
+<body>
+  <!-- headline -->
+  <div class="header">
+    <h1 id="header" class="form-header" data-component="header">Gespeicherte Daten</h1>
+    <div id="subHeader" class="form-subHeader">Hier sind Ihre gespeicherten Daten nach dem Abschicken ersichtlich sowie die hochgeladenen Dateien erneut downloadbar.</div>
+  </div>
+  <br/>
+  <br/>
+
+  <!-- input fields -->
+  <div class="name">
+    <label for="name">Vollständiger Name:</label>
+    <span> </span>
+  </div>
+  <div class="email">
+    <label for="email">E-Mail:</label> 
+
+  </div>
+  <div class="anschrift">
+    <label for="anschrift">Derzeitige Anschrift:</label>
+
+  </div>
+  <div class="telefon">
+  <label for="telefon">Telefon:</label>
+  </div>
+  <div class="art">
+    <label for="art">Bewerbung auf:</label>
+  </div>
+
+  <br/>
+  <!-- file upload field -->
+  <div class="dateien">
+    <label for="art">Hochgeladene Dateien:</label><br/>
+    <a id="link">Downloadlink für die hochgeladenen Dateien (wenn etwas hochgeladen wurde).</a>
+  </div>
+</body>
+<!-- script to call Python code -->
+<script src="script.js"></script>
+</html>
