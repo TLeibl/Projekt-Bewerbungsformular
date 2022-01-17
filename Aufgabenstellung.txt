@@ -7,6 +7,8 @@ JSON-Datei abgespeichert werden.
 Eine Auswahl von Dokumenten soll ebenfalls möglich sein, welche dann ebenfalls gespeichert werden sollen.
 Durch das Speichern der Daten sowie Dateien wird ein Server simuliert.
 War der Upload erfolgreich oder ging etwas schief, so soll eine entsprechende Benachrichtigung erscheinen.
+Die gespeicherten Daten sowie Links zum erneuten Download der hochgeladenen Dateien sollen dem Nutzer
+nach Abschluss des Vorgangs angezeigt werden.
 
 
 Der Backend-Code soll in Python geschrieben werden und durch einen Compiler nach Wahl in Web Assembly (WASM)

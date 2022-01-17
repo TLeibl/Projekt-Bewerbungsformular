@@ -116,14 +116,35 @@ input.addEventListener('change', function () {
 
 
 async function updateList(){
-    var input = document.getElementById('fileUpload');
+    var input1 = document.getElementById('fileUpload1');
+    var input2 = document.getElementById('fileUpload2');
+    var input3 = document.getElementById('fileUpload3');
     var output = document.getElementById('fileList');
     var children = "";
 
-    for (var i = 0; i < input.files.length; ++i) {
-      children += '<li>' + input.files.item(i).name + '</li>';
-    }
+    children += '<li>' + input1.files.item(0).name + '</li>';
     output.innerHTML = '<ul>'+children+'</ul>';
+    children += '<li>' + input2.files.item(0).name + '</li>';
+    output.innerHTML = '<ul>'+children+'</ul>';
+    children += '<li>' + input3.files.item(0).name + '</li>';
+    output.innerHTML = '<ul>'+children+'</ul>';
+}
+
+// execute with onClick to set data in Output.html
+async function setDataOutput() {
+
+  let pyodide = await pyodideReadyPromise;
+
+  try {
+      pyodide.runPythonAsync(`my_string = "This is a python string." `);
+
+      document.getElementById("name").innerText = my_string;
+      //pyodide globals. ...
+  } catch (err) {
+    addToOutput(err);
+    //Popup Message Failure
+    alert("Etwas lief schief! Bitte versuchen Sie es erneut!");
+  }
 }
 
 
