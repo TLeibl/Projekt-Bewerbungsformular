@@ -4,7 +4,8 @@ Funktionsweise:
 Der Nutzer soll ein Bewerbungsformular ausfüllen können und durch einen Buttonklick die eingegebenen Daten 
 (Vorname, Nachname, Email, Straße, Wohnort mit PLZ, Telefonnummer sowie Bewerbungsstelle) in einer 
 JSON-Datei abgespeichert werden. 
-Eine Auswahl von Bewerbungsdokumenten soll ebenfalls möglich sein, welche dann ebenfalls gespeichert bzw. hochgeladen und wieder heruntergeladen werden können.
+Eine Auswahl von Bewerbungsdokumenten soll ebenfalls möglich sein, welche dann ebenfalls gespeichert bzw. 
+hochgeladen und wieder heruntergeladen werden können.
 Durch das Speichern der Daten, sowie Dateien wird ein Server simuliert.
 War der Upload erfolgreich oder ging etwas schief, so soll eine entsprechende Benachrichtigung erscheinen.
 Fehlen Eingaben, so soll hierzu ebenfalls eine Benachrichtigung erscheinen.
@@ -12,7 +13,8 @@ Die gespeicherten Daten sowie Links zum erneuten Download der hochgeladenen Date
 angezeigt werden können.
 
 
-Das Backend bzw. die Verarbeitung der Daten soll ausschließlich in Python geschrieben werden und durch einen Compiler nach Wahl (z.B. Pyodide) in Web Assembly (WASM)
-compiled werden. Funktionen sollen in einer separaten JavaScript-Datei, Style in einer CSS-Datei umgesetzt werden.
+Das Backend bzw. die Verarbeitung der Daten soll ausschließlich in Python geschrieben werden und durch einen 
+Compiler nach Wahl (z.B. Pyodide) in Web Assembly (WASM) compiled werden. 
+Funktionen sollen in einer separaten JavaScript-Datei, Style in einer CSS-Datei umgesetzt werden.
 Eine README soll die Verwendung und hierfür nötige Schritte wie z.B. das Installieren von Plugins o.Ä.
 beschreiben.
