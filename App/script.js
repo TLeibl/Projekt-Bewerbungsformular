@@ -95,9 +95,6 @@ async function evaluatePython() {
     let x = pyodide.runPython(`open('/data.json', 'r').read()`);
     addToOutput(x); 
 
-    //zeigt das Modal an
-    modalView();
-
     //If Success shows this message in the console
     console.log("Übermittlung der Daten erfolgreich!, Success!");
 
@@ -181,22 +178,27 @@ form.addEventListener('submit', (e) => {
   if(vorname.value === '' || vorname.value == null){
     messages.push('Bitte geben Sie Ihren Vornamen an.')
   }
-  if(nachname.value === '' || nachname.value == null){
+  else if(nachname.value === '' || nachname.value == null){
     messages.push('Bitte geben Sie Ihren Nachnamen an.')
   }
-  if(email.value === '' || email.value == null){
+  else if(email.value === '' || email.value == null){
     messages.push('Bitte geben Sie Ihren Email-Adresse an.')
   }
-  if(strasse.value === '' || strasse.value == null){
+  else if(strasse.value === '' || strasse.value == null){
     messages.push('Bitte geben Sie Ihre Straße mit Hausnummer an.')
   }
-  if(ort.value === '' || ort.value == null){
+  else if(ort.value === '' || ort.value == null){
     messages.push('Bitte geben Sie Ihren Wohnort mit PLZ an.')
   }
+
 
   if(messages.length > 0){
     e.preventDefault()
     errorElement.innerText = messages.join(', ')
+  }
+  else{  //no errors
+    //show Modal - every value set
+    modalView();
   }
 });
 
@@ -213,6 +215,7 @@ async function updateList(){
   children += '<li>' + input3.files.item(0).name + '</li>';
   output.innerHTML = '<ul>' + children + '</ul>';
 }
+
 
 //opens the Modal after pressing the "Abschicken" - Button
 function modalView() {
