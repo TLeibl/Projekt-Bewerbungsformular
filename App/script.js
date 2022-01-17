@@ -98,6 +98,9 @@ async function evaluatePython() {
     //If Success shows this message in the console
     console.log("Übermittlung der Daten erfolgreich!, Success!");
 
+     //show Modal - every value set
+     modalView();
+
   } catch (err) {
     addToOutput(err);
     //Popup Message Failure
@@ -196,10 +199,6 @@ form.addEventListener('submit', (e) => {
     e.preventDefault()
     errorElement.innerText = messages.join(', ')
   }
-  else{  //no errors
-    //show Modal - every value set
-    modalView();
-  }
 });
 
 
@@ -219,6 +218,7 @@ async function updateList(){
 
 //opens the Modal after pressing the "Abschicken" - Button
 function modalView() {
+  modalOpen = true;
   showModalData();
   modal.style.display = "block";
   // When the user clicks on <span> (x), close the modal
