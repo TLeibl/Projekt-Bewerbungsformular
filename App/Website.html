@@ -16,7 +16,7 @@
   <!-- headline -->
   <div class="header">
     <h1 id="header" class="form-header" data-component="header">Bewerbung</h1>
-    <div id="subHeader" class="form-subHeader">Bitte füllen Sie das untenstehende Formular aus, um sich für eine Stelle zu bewerben. Füllen Sie alle Felder korrekt aus.</div>
+    <div id="subHeader" class="form-subHeader">Bitte füllen Sie das untenstehende Formular aus, um sich für eine Stelle zu bewerben. Füllen Sie alle Felder korrekt aus und fügen die benötigten Dateien ein.</div>
   </div>
   <br/>
   <br/>
@@ -49,7 +49,7 @@
   <!-- option input field -->
   <label for="art">Bewerbung auf</label> <br>
   <div class="art">
-     <select id="artSelect" size="1">
+     <select id="artSelect" size="1" required>
       <option>Position 1</option>
       <option>Position 2</option>
       <option>Position 3</option>
@@ -58,11 +58,19 @@
   <br/>
   <!-- file upload field -->
   <label for="datei">Bewerbungsunterlagen</label> <br> 
-  <label for="fileUpload" id="upload" class="custom-file-upload">
-    <i class="fas fa-file-upload"></i> Dateien auswählen
+  <label for="fileUpload1" id="uploadBewerbung" class="custom-file-upload">
+    <i class="fas fa-file-upload"></i> Bewerbungsschreiben
+  </label>
+  <label for="fileUpload2" id="uploadLebenslauf" class="custom-file-upload">
+    <i class="fas fa-file-upload"></i> Lebenslauf
+  </label>
+  <label for="fileUpload3" id="uploadZeugnis" class="custom-file-upload">
+    <i class="fas fa-file-upload"></i> Abschlusszeugnis
   </label>
   <div class="input">
-    <input name="datei[]" id="fileUpload" type="file" multiple  onchange="updateList()"> 
+    <input name="datei" id="fileUpload1" type="file" onchange="updateList()"> 
+    <input name="datei" id="fileUpload2" type="file" onchange="updateList()"> 
+    <input name="datei" id="fileUpload3" type="file" onchange="updateList()"> 
     <p>Ausgewählte Dateien:</p>
     <div id="fileList"></div>
     <a id="link">Downloadlink hochgeladene Dateien (nach Upload)</a>
