@@ -77,7 +77,7 @@ async function evaluatePython() {
     //addToOutput(y);
     //Popup Message Success
     alert("Übermittlung der Daten erfolgreich!");
-    location.href="Uebersicht.html";
+    location.href="Output.html";
     downloadLink.style.display = "block";
 
 
