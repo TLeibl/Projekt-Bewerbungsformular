@@ -1,7 +1,19 @@
+// Get the modal
+var modal = document.getElementById("uebersichtsModal");
+
+// Get the button that opens the modal
+var modalBtn = document.getElementById("uebersichtBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
 const output = document.getElementById("output");
-const input = document.getElementById('fileUpload');
+const input1 = document.getElementById('fileUpload1');
+const input2 = document.getElementById('fileUpload2');
+const input3 = document.getElementById('fileUpload3');
 const downloadLink = document.getElementById('link');
 let objectURL;
+let pyodide;
 
 
 function addToOutput(s) {
@@ -12,7 +24,7 @@ function addToOutput(s) {
 output.value = "Initializing Python...\n";
 // init Pyodide
 async function main() {
-  let pyodide = await loadPyodide({
+  pyodide = await loadPyodide({
     indexURL: "https://cdn.jsdelivr.net/pyodide/v0.19.0/full/"
   });
 
@@ -24,7 +36,7 @@ let pyodideReadyPromise = main();
 // execute with onClick
 async function evaluatePython() {
  
-  let pyodide = await pyodideReadyPromise;
+  pyodide = await pyodideReadyPromise;
 
   try {
     pyodide.runPython(`
@@ -40,7 +52,9 @@ async function evaluatePython() {
           wohnort = js.ortInput.value
           telefon = js.nummerInput.value
           bewerbungAuf = js.artSelect.value
-          dateien = js.fileUpload.value
+          bewerbungsSchreiben = js.fileUpload1.value
+          lebensLauf = js.fileUpload2.value
+          zeugnis = js.fileUpload3.value
 
 
           #saving the data into JSON format
@@ -52,7 +66,9 @@ async function evaluatePython() {
             "wohnort" : wohnort,
             "telefon" : telefon,
             "bewerbungAuf" : bewerbungAuf,
-            "dateien" : dateien
+            "bewerbungsSchreiben" : bewerbungsSchreiben,
+            "lebensLauf" : lebensLauf,
+            "zeugnis" : zeugnis
           }
             
           # Serializing json; indent -> spaces for the json formatting
@@ -65,29 +81,19 @@ async function evaluatePython() {
           
           #print(data)
 
-          #load data from the JSON format
-          js.showName.innerText = data['vorname']+" "+data['nachname']
-          js.showEmail.innerText = data['email']
-          js.showAnschrift.innerText = data['strasse']+', '+data['wohnort']
-          js.showTelefon.innerText = data['telefon']
-          js.showArt.innerText = data['bewerbungAuf']
+          
 
           `);
     let x = pyodide.runPython(`open('/data.json', 'r').read()`);
     //const data = pyodide.globals.get(['data']['vorname']);
     
-    addToOutput(x); // wird in der console ausgegeben
+    addToOutput(x); // wird im output textfeld angezeigt
    
-    
-    //addToOutput(x);
-    //addToOutput(y);
+    //zeigt das Modal an
+    modalView();
     //Popup Message Success
-    alert("Übermittlung der Daten erfolgreich!");
-    //location.href="Output.html";
+    console.log("Übermittlung der Daten erfolgreich!, Success!");
     downloadLink.style.display = "block";
-    
-
-
 
   } catch (err) {
     addToOutput(err);
@@ -96,29 +102,80 @@ async function evaluatePython() {
   }
 }
 
+async function showModalData(){
+  pyodide = await pyodideReadyPromise;
+
+  try {
+    pyodide.runPython(`
+    import js
+    import json
+
+    with open('/data.json', 'r') as outfile:
+      #load data from the JSON format
+      js.showName.innerText = data['vorname']+" "+data['nachname']
+      js.showEmail.innerText = data['email']
+      js.showAnschrift.innerText = data['strasse']+', '+data['wohnort']
+      js.showTelefon.innerText = data['telefon']
+      js.showArt.innerText = data['bewerbungAuf']
+    
+    `)
+
+  }catch (err) {
+    addToOutput(err);
+    //Popup Message Failure
+    alert("Etwas lief schief! Bitte überprüfen Sie Ihre Eingaben, die Vollständigkit dieser und versuchen es, gegebenenfalls zu einem späteren Zeitpunkt, erneut!");
+  }
+  return pyodide;
+  
+
+}
+
 
   
 
 
 
-input.addEventListener('change', function () {
-  if (objectURL) {
+input1.addEventListener('change', function () {
+  if (objectURL1) {
     // revoke the old object url to avoid using more memory than needed
-    URL.revokeObjectURL(objectURL);  
+    URL.revokeObjectURL(objectURL1);  
   }
 
   const file = this.files[0];
-  objectURL = URL.createObjectURL(file);
+  objectURL1 = URL.createObjectURL(file);
 
   downloadLink.download = file.name; // this name is used when the user downloads the file
-  downloadLink.href = objectURL;
+  downloadLink.href = objectURL1;
+});
+
+input2.addEventListener('change', function () {
+  if (objectURL2) {
+    // revoke the old object url to avoid using more memory than needed
+    URL.revokeObjectURL(objectURL2);  
+  }
+
+  const file = this.files[0];
+  objectURL2 = URL.createObjectURL(file);
+
+  downloadLink.download = file.name; // this name is used when the user downloads the file
+  downloadLink.href = objectURL2;
+});
+
+input3.addEventListener('change', function () {
+  if (objectURL3) {
+    // revoke the old object url to avoid using more memory than needed
+    URL.revokeObjectURL(objectURL3);  
+  }
+
+  const file = this.files[0];
+  objectURL3 = URL.createObjectURL(file);
+
+  downloadLink.download = file.name; // this name is used when the user downloads the file
+  downloadLink.href = objectURL3;
 });
 
 
 async function updateList(){
-    var input1 = document.getElementById('fileUpload1');
-    var input2 = document.getElementById('fileUpload2');
-    var input3 = document.getElementById('fileUpload3');
     var output = document.getElementById('fileList');
     var children = "";
 
@@ -130,48 +187,24 @@ async function updateList(){
     output.innerHTML = '<ul>'+children+'</ul>';
 }
 
-// execute with onClick to set data in Output.html
-async function setDataOutput() {
+function modalView() {
+  // When the user clicks on the button, open the modal
 
-  let pyodide = await pyodideReadyPromise;
-
-  try {
-      pyodide.runPythonAsync(`my_string = "This is a python string." `);
-
-      document.getElementById("name").innerText = my_string;
-      //pyodide globals. ...
-  } catch (err) {
-    addToOutput(err);
-    //Popup Message Failure
-    alert("Etwas lief schief! Bitte versuchen Sie es erneut!");
-  }
-}
-
-
-// Get the modal
-var modal = document.getElementById("uebersichtsModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("uebersichtBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
+  showModalData();
   modal.style.display = "block";
-}
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
 }
-
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
+
+}
+
 
 
