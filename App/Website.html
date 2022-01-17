@@ -23,66 +23,70 @@
   <br />
   <br />
 
+  <!-- Error Message if field is not filled -->
+  <div id="error"></div>
   <!-- input fields -->
-  <label for="name">Vollständiger Name</label> <br>
-  <div class="vorname">
-    <input type="text" placeholder="Vorname" id="vornameInput" name="vorname" required="">
-    <input type="text" placeholder="Nachname" id="nachnameInput" name="nachname" required="">
-  </div>
-  <br />
-  <div class="email">
-    <label for="email">E-Mail</label> <br>
-    <input type="email" placeholder="z.B. max.mustermann@email.com" id="emailInput" name="email" required="">
-  </div>
-  <br />
-  <label for="anschrift">Derzeitige Anschrift</label> <br>
-  <div class="strasse">
-    <input type="text" placeholder="Straße, Hausnummer" id="strasseInput" name="strasse" required="">
-  </div>
-  <div class="ort">
-    <input type="text" placeholder="PLZ, Wohnort" id="ortInput" name="ort" required="">
-  </div>
-  <br />
-  <label for="telefon">Telefon</label> <br>
-  <div class="telefon">
-    <input type="text" placeholder="Nummer mit Vorwahl" id="nummerInput" name="nummer" required="">
-  </div>
-  <br />
-  <!-- option input field -->
-  <label for="art">Bewerbung auf</label> <br>
-  <div class="art">
-     <select id="artSelect" size="1" required>
-      <option>Position 1</option>
-      <option>Position 2</option>
-      <option>Position 3</option>
-    </select>
-  </div>
-  <br />
-  <!-- file upload field -->
-  <label for="datei">Bewerbungsunterlagen</label> <br> 
-  <label for="fileUpload1" id="uploadBewerbung" class="custom-file-upload">
-    <i class="fas fa-file-upload"></i> Bewerbungsschreiben
-  </label>
-  <label for="fileUpload2" id="uploadLebenslauf" class="custom-file-upload">
-    <i class="fas fa-file-upload"></i> Lebenslauf
-  </label>
-  <label for="fileUpload3" id="uploadZeugnis" class="custom-file-upload">
-    <i class="fas fa-file-upload"></i> Abschlusszeugnis
-  </label>
-  <div class="input">
-    <input name="datei" id="fileUpload1" type="file" onchange="updateList()"> 
-    <input name="datei" id="fileUpload2" type="file" onchange="updateList()"> 
-    <input name="datei" id="fileUpload3" type="file" onchange="updateList()"> 
-    <p>Ausgewählte Dateien:</p>
-    <div id="fileList"></div>
-  </div>
-  <br />
-  <br />
-  <br />
-  <!-- Abschicken-button -->
-  <div class="button">
-    <button onclick="evaluatePython()">Abschicken</button>
-  </div>
+  <form id="form" action="/" method="GET">
+    <label for="name">Vollständiger Name</label> <br>
+    <div class="vorname">
+      <input type="text" placeholder="Vorname" id="vornameInput" name="vorname" required="">
+      <input type="text" placeholder="Nachname" id="nachnameInput" name="nachname" required="">
+    </div>
+    <br />
+    <div class="email">
+      <label for="email">E-Mail</label> <br>
+      <input type="email" placeholder="z.B. max.mustermann@email.com" id="emailInput" name="email" required="">
+    </div>
+    <br />
+    <label for="anschrift">Derzeitige Anschrift</label> <br>
+    <div class="strasse">
+      <input type="text" placeholder="Straße, Hausnummer" id="strasseInput" name="strasse" required="">
+    </div>
+    <div class="ort">
+      <input type="text" placeholder="PLZ, Wohnort" id="ortInput" name="ort" required="">
+    </div>
+    <br />
+    <label for="telefon">Telefon</label> <br>
+    <div class="telefon">
+      <input type="text" placeholder="Nummer mit Vorwahl" id="nummerInput" name="nummer" required="">
+    </div>
+    <br />
+    <!-- option input field -->
+    <label for="art">Bewerbung auf</label> <br>
+    <div class="art">
+       <select id="artSelect" size="1" required>
+        <option>Position 1</option>
+        <option>Position 2</option>
+        <option>Position 3</option>
+      </select>
+    </div>
+    <br />
+    <!-- file upload field -->
+    <label for="datei">Bewerbungsunterlagen</label> <br> 
+    <label for="fileUpload1" id="uploadBewerbung" class="custom-file-upload">
+      <i class="fas fa-file-upload"></i> Bewerbungsschreiben
+    </label>
+    <label for="fileUpload2" id="uploadLebenslauf" class="custom-file-upload">
+      <i class="fas fa-file-upload"></i> Lebenslauf
+    </label>
+    <label for="fileUpload3" id="uploadZeugnis" class="custom-file-upload">
+      <i class="fas fa-file-upload"></i> Abschlusszeugnis
+    </label>
+    <div class="input">
+      <input name="datei" id="fileUpload1" type="file" onchange="updateList()"> 
+      <input name="datei" id="fileUpload2" type="file" onchange="updateList()"> 
+      <input name="datei" id="fileUpload3" type="file" onchange="updateList()"> 
+      <p>Ausgewählte Dateien:</p>
+      <div id="fileList"></div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <!-- Abschicken-button -->
+    <div class="button">
+      <button onclick="evaluatePython()">Abschicken</button>
+    </div>
+  </form>
   <br />
   <br />
 
@@ -133,9 +137,9 @@
       <!-- file upload field -->
       <div class="dateien">
         <label for="art">Hochgeladene Dateien:</label><br />
-        <a id="link1">Downloadlink für die hochgeladenen Dateien (wenn etwas hochgeladen wurde).</a>
-        <a id="link2">Downloadlink hochgeladene Dateien (nach Upload)</a>
-        <a id="link3">Downloadlink hochgeladene Dateien (nach Upload)</a>
+        <a id="link1">Downloadlink Bewerbungsschreiben (wenn hochgeladen)</a>
+        <a id="link2">Downloadlink Lebenslauf (wenn hochgeladen)</a>
+        <a id="link3">Downloadlink Abschlusszeugnis (wenn hochgeladen)</a>
       </div>
     </div>
 

@@ -4,6 +4,16 @@ var modal = document.getElementById("uebersichtsModal");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
+//constants of form and its input fields for validation and the error that is showing
+const form = document.getElementById("form");
+const errorElement = document.getElementById("error");
+const vorname = document.getElementById("vornameInput");
+const nachname = document.getElementById("nachnameInput");
+const email = document.getElementById("emailInput");
+const strasse = document.getElementById("strasseInput");
+const ort = document.getElementById("ortInput");
+const nummer = document.getElementById("nummerInput");
+
 const output = document.getElementById("output");
 const input1 = document.getElementById('fileUpload1');
 const input2 = document.getElementById('fileUpload2');
@@ -127,7 +137,6 @@ async function showModalData(){
 }
 
 
-
 input1.addEventListener('change', function () {
   if (objectURL) {
     // revoke the old object url to avoid using more memory than needed
@@ -173,6 +182,33 @@ input3.addEventListener('change', function () {
 });
 
 
+//Validation for textfields (input aquired)
+form.addEventListener('submit', (e) => {
+  let messages = []
+  if(vorname.value === '' || vorname.value == null){
+    messages.push('Bitte geben Sie Ihren Vornamen an.')
+  }
+  if(nachname.value === '' || nachname.value == null){
+    messages.push('Bitte geben Sie Ihren Nachnamen an.')
+  }
+  if(email.value === '' || email.value == null){
+    messages.push('Bitte geben Sie Ihren Email-Adresse an.')
+  }
+  if(strasse.value === '' || strasse.value == null){
+    messages.push('Bitte geben Sie Ihre Straße mit Hausnummer an.')
+  }
+  if(ort.value === '' || ort.value == null){
+    messages.push('Bitte geben Sie Ihren Wohnort mit PLZ an.')
+  }
+
+  if(messages.length > 0){
+    e.preventDefault()
+    errorElement.innerText = messages.join(', ')
+  }
+})
+
+
+//updates the list of chosen files to upload
 async function updateList(){
     var output = document.getElementById('fileList');
     var children = "";
@@ -184,6 +220,7 @@ async function updateList(){
     children += '<li>' + input3.files.item(0).name + '</li>';
     output.innerHTML = '<ul>'+children+'</ul>';
 }
+
 
 function modalView() {
   // When the user clicks on the button, open the modal
