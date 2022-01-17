@@ -33,13 +33,13 @@ async function evaluatePython() {
           import json
           import os
 
-          dir = js.vornameInput.value+js.nachnameInput.value
+          #dir = js.vornameInput.value+js.nachnameInput.value
           
-          if not os.path.exists(dir):
-            os.makedirs(dir)
-            print("Für die Ablage der Dateien wurde folgender Ordner erstellt :", dir)
-          else:
-            print("Für die Ablage der Dateien wurde der bereits existierende Ordner verwendet :", dir)
+          #if not os.path.exists(dir):
+          #  os.makedirs(dir)
+          #  print("Für die Ablage der Dateien wurde folgender Ordner erstellt :", dir)
+          #else:
+          #  print("Für die Ablage der Dateien wurde der bereits existierende Ordner verwendet :", dir)
 
             
 
@@ -88,6 +88,7 @@ async function evaluatePython() {
     alert("Etwas lief schief! Bitte überprüfen Sie Ihre Eingaben, die Vollständigkit dieser und versuchen es, gegebenenfalls zu einem späteren Zeitpunkt, erneut!");
   }
 }
+
 
 input.addEventListener('change', function () {
   if (objectURL) {
