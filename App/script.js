@@ -91,6 +91,7 @@ async function evaluatePython() {
               outfile.write(json_object)
 
           `);
+
     //Shows JSON Data in the output textfield
     let x = pyodide.runPython(`open('/data.json', 'r').read()`);
     addToOutput(x); 
@@ -98,8 +99,8 @@ async function evaluatePython() {
     //If Success shows this message in the console
     console.log("Übermittlung der Daten erfolgreich!, Success!");
 
-     //show Modal - every value set
-     modalView();
+    //Showing the saved Data in the Modal
+    modalView();
 
   } catch (err) {
     addToOutput(err);
@@ -133,6 +134,7 @@ async function showModalData() {
   }
   return pyodide;
 }
+
 
 //Eventlistener for file input Bewerbungsschreiben
 input1.addEventListener('change', function () {
