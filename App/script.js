@@ -21,7 +21,9 @@ const input3 = document.getElementById('fileUpload3');
 const downloadLink1 = document.getElementById('link1');
 const downloadLink2 = document.getElementById('link2');
 const downloadLink3 = document.getElementById('link3');
-let objectURL;
+let objectURL1;
+let objectURL2;
+let objectURL3;
 let pyodide;
 
 
@@ -44,9 +46,10 @@ let pyodideReadyPromise = main();
 
 // execute with onClick
 async function evaluatePython() {
- 
+
   pyodide = await pyodideReadyPromise;
 
+  //Python code with pyodide getting Data and Writing Data
   try {
     pyodide.runPython(`
           import js
@@ -88,18 +91,15 @@ async function evaluatePython() {
               outfile.write(json_object)
 
           `);
+    //Shows JSON Data in the output textfield
     let x = pyodide.runPython(`open('/data.json', 'r').read()`);
-    //const data = pyodide.globals.get(['data']['vorname']);
-    
-    addToOutput(x); // wird im output textfeld angezeigt
-   
+    addToOutput(x); 
+
     //zeigt das Modal an
     modalView();
-    //Popup Message Success
+
+    //If Success shows this message in the console
     console.log("Übermittlung der Daten erfolgreich!, Success!");
-    downloadLink1.style.display = "block";
-    downloadLink2.style.display = "block";
-    downloadLink3.style.display = "block";
 
   } catch (err) {
     addToOutput(err);
@@ -108,7 +108,8 @@ async function evaluatePython() {
   }
 }
 
-async function showModalData(){
+//Loading JSON data dynamically into the Modal after pressing the Abschicken Button
+async function showModalData() {
   pyodide = await pyodideReadyPromise;
 
   try {
@@ -123,64 +124,61 @@ async function showModalData(){
       js.showAnschrift.innerText = data['strasse']+', '+data['wohnort']
       js.showTelefon.innerText = data['telefon']
       js.showArt.innerText = data['bewerbungAuf']
-    
     `)
 
-  }catch (err) {
+  } catch (err) {
     addToOutput(err);
     //Popup Message Failure
     alert("Etwas lief schief! Bitte überprüfen Sie Ihre Eingaben, die Vollständigkit dieser und versuchen es, gegebenenfalls zu einem späteren Zeitpunkt, erneut!");
   }
   return pyodide;
-  
-
 }
 
-
+//Eventlistener for file input Bewerbungsschreiben
 input1.addEventListener('change', function () {
-  if (objectURL) {
+  if (objectURL1) {
     // revoke the old object url to avoid using more memory than needed
-    URL.revokeObjectURL(objectURL);  
+    URL.revokeObjectURL(objectURL1);
   }
-
   const file = this.files[0];
-  objectURL = URL.createObjectURL(file);
+  objectURL1 = URL.createObjectURL(file);
 
   downloadLink1.download = file.name; // this name is used when the user downloads the file
-  downloadLink1.href = objectURL;
-  downloadLink1.innerText = "Download "+file.name;
+  downloadLink1.href = objectURL1;
+  downloadLink1.innerText = "Download " + file.name; //download link name in the modal
 });
 
-
+//Eventlistener for file input Lebenslauf
 input2.addEventListener('change', function () {
-  if (objectURL) {
+  if (objectURL2) {
     // revoke the old object url to avoid using more memory than needed
-    URL.revokeObjectURL(objectURL);  
+    URL.revokeObjectURL(objectURL2);
   }
-
   const file = this.files[0];
-  objectURL = URL.createObjectURL(file);
-
+  objectURL2 = URL.createObjectURL(file);
   downloadLink2.download = file.name; // this name is used when the user downloads the file
-  downloadLink2.href = objectURL;
-  downloadLink2.innerText = "Download "+file.name;
+  downloadLink2.href = objectURL2;
+  downloadLink2.innerText = "Download " + file.name; //download link name in the modal
 
 });
 
+//Eventlistener for file input Abschlusszeugnis
 input3.addEventListener('change', function () {
-  if (objectURL) {
+  if (objectURL3) {
     // revoke the old object url to avoid using more memory than needed
-    URL.revokeObjectURL(objectURL);  
+    URL.revokeObjectURL(objectURL3);
   }
-
   const file = this.files[0];
-  objectURL = URL.createObjectURL(file);
-
+  objectURL3 = URL.createObjectURL(file);
   downloadLink3.download = file.name; // this name is used when the user downloads the file
-  downloadLink3.href = objectURL;
-  downloadLink3.innerText = "Download "+file.name;
+  downloadLink3.href = objectURL3;
+  downloadLink3.innerText = "Download " + file.name; //download link name in the modal
 });
 
+//updates the file list of the file upload
+async function updateList() {
+  var output = document.getElementById('fileList');
+  var children = "";
 
 //Validation for textfields (input aquired)
 form.addEventListener('submit', (e) => {
@@ -205,7 +203,8 @@ form.addEventListener('submit', (e) => {
     e.preventDefault()
     errorElement.innerText = messages.join(', ')
   }
-})
+});
+}
 
 
 //updates the list of chosen files to upload
@@ -213,32 +212,28 @@ async function updateList(){
     var output = document.getElementById('fileList');
     var children = "";
 
-    children += '<li>' + input1.files.item(0).name + '</li>';
-    output.innerHTML = '<ul>'+children+'</ul>';
-    children += '<li>' + input2.files.item(0).name + '</li>';
-    output.innerHTML = '<ul>'+children+'</ul>';
-    children += '<li>' + input3.files.item(0).name + '</li>';
-    output.innerHTML = '<ul>'+children+'</ul>';
+  children += '<li>' + input1.files.item(0).name + '</li>';
+  output.innerHTML = '<ul>' + children + '</ul>';
+  children += '<li>' + input2.files.item(0).name + '</li>';
+  output.innerHTML = '<ul>' + children + '</ul>';
+  children += '<li>' + input3.files.item(0).name + '</li>';
+  output.innerHTML = '<ul>' + children + '</ul>';
 }
 
-
+//opens the Modal after pressing the "Abschicken" - Button
 function modalView() {
-  // When the user clicks on the button, open the modal
-
   showModalData();
   modal.style.display = "block";
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
     modal.style.display = "none";
   }
-}
-
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
 }
 
 
