@@ -175,11 +175,6 @@ input3.addEventListener('change', function () {
   downloadLink3.innerText = "Download " + file.name; //download link name in the modal
 });
 
-//updates the file list of the file upload
-async function updateList() {
-  var output = document.getElementById('fileList');
-  var children = "";
-
 //Validation for textfields (input aquired)
 form.addEventListener('submit', (e) => {
   let messages = []
@@ -204,7 +199,6 @@ form.addEventListener('submit', (e) => {
     errorElement.innerText = messages.join(', ')
   }
 });
-}
 
 
 //updates the list of chosen files to upload
