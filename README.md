@@ -1,7 +1,7 @@
 # Bewerbungsformular mit Datenspeicherung
-WebDev Endabgabe
+Projekt innerhalb des Studiums an der Hochschule Heilbronn
 Teammitglieder:
-Marc Nauendorf [200882], Tabea Leibl [204105], David Flaig [198687]
+Tabea Leibl, Marc Nauendorf, David Flaig 
 
 Funktionsweise:
 Der Nutzer kann ein Bewerbungsformular ausfüllen und durch Klick auf den Abschicken-Button werden die eingegebenen Daten (Name, Alter, etc.) in einer JSON-Datei abgespeichert. Zusätzlich können im Formular Dokumente ausgewählt werden, welche dann ebenfalls gespeichert werden.
