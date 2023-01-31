@@ -1,6 +1,6 @@
 # Bewerbungsformular mit Datenspeicherung
 Projekt innerhalb des Studiums an der Hochschule Heilbronn
-Teammitglieder:
+| Teammitglieder:
 Tabea Leibl, Marc Nauendorf, David Flaig 
 
 Funktionsweise:
